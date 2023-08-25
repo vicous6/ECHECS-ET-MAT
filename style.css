@@ -1,0 +1,22 @@
+body{
+    width: 100%;
+    background-color: grey;
+}
+
+#board{
+    width: 80%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+div{
+    height: 80px;
+    /* width: 80px; */
+    background-size: 40%;
+    border: 1px solid black;
+}
+#target{
+    /* opacity: 0.2; */
+   font-size: 30px;
+}
+
