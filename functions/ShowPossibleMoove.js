@@ -1,4 +1,5 @@
 import { Empty } from '../models/Empty.js'
+import { Rook } from '../models/Rook.js'
 import { reRender } from './displayHtml.js'
 import { removeAllTargets } from './removeAllTargets.js'
 let possibleTargets= []
@@ -251,9 +252,13 @@ if(possibleTargets.length === 0 ){
     }
 
 // 
-if(tab.includes(x) === true && tab.includes(y+1)=== true  && tab.includes(y+2)=== true && board[x][y+1].color=== "void" && board[x][y+2].color=== "void" ){
+if(tab.includes(x) === true && tab.includes(y+1)=== true  && tab.includes(y+2)=== true && tab.includes(y+3)=== true && board[x][y+1].color=== "void" && board[x][y+2].color=== "void" && board[x][y+3].symbol=== "R" ){
     console.log("oucou")
     board[x][y+2].target= true
+}
+if(tab.includes(x) === true && tab.includes(y-1)=== true  && tab.includes(y-2)=== true && tab.includes(y-3)=== true && tab.includes(y-4)=== true && board[x][y-1].color=== "void" && board[x][y-2].color=== "void" && board[x][y-3].color=== "void"&& board[x][y-4].symbol=== "R" ){
+    console.log("oucou")
+    board[x][y-2].target= true
 }
 // RESTE A FAIRE LE ROCK
 // 
@@ -616,12 +621,7 @@ removeAllTargets(board)
 
     possibleTargets.push(x)
     possibleTargets.push(y)
-// console.log(possibleTargets)
 
-// console.log(x)
-// console.log(y)
-// console.log(possibleTargets[0])
-// console.log(possibleTargets[1])
   let  xdepart = possibleTargets[0]
   let  ydepart = possibleTargets[1]
 
@@ -637,8 +637,29 @@ console.log(board[xdepart][ydepart])
     possibleTargets.pop()
     possibleTargets.pop()
  }
-//  si tout est ok
-    else{
+
+//  le cas du petit rock rock
+else if( board[xdepart][ydepart].symbol=== "KI" && ycible === ydepart+2){
+
+    board[xcible][ycible] = board[xdepart][ydepart]
+    board[xdepart][ydepart+1] = new Rook(`${board[xdepart][ydepart].color}`)
+    board[xcible][ycible+1]=new Empty ("void")
+    board[xdepart][ydepart]=new Empty ("void")
+    possibleTargets=[]
+    removeAllTargets(board)
+    reRender(board)
+    //  si tout est ok
+  }else if(board[xdepart][ydepart].symbol=== "KI" && ycible === ydepart-2){
+
+    board[xcible][ycible] = board[xdepart][ydepart]
+    board[xdepart][ydepart-1] = new Rook(`${board[xdepart][ydepart].color}`)
+    board[xcible][ycible-1]=new Empty ("void")
+    board[xcible][ycible-2]=new Empty ("void")
+    board[xdepart][ydepart]=new Empty ("void")
+    possibleTargets=[]
+    removeAllTargets(board)
+    reRender(board)
+  } else{
         board[xcible][ycible] = board[xdepart][ydepart]
         board[xdepart][ydepart] = new Empty("void")
         possibleTargets=[]
@@ -648,9 +669,6 @@ console.log(board[xdepart][ydepart])
     }
  
 }
-// console.log(possibleTargets)
-
-// console.log(boarpossd)
 
 
 }
