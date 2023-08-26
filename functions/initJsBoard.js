@@ -1,4 +1,4 @@
-import { Pawn } from '../models/pawn.js'
+import { Pawn } from '../models/Pawn.js'
 import { King } from '../models/King.js'
 import { Knight } from '../models/Knight.js'
 import { Bishop } from '../models/Bishop.js'
