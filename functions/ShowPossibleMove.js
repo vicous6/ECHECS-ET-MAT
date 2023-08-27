@@ -2,6 +2,8 @@ import { Empty } from "../models/Empty.js";
 import { Rook } from "../models/Rook.js";
 import { reRender } from "./displayHtml.js";
 import { removeAllTargets } from "./removeAllTargets.js";
+let isRockAvailableForBlack=true;
+let isRockAvailableForWhite=true;
 
 let possibleTargets = [];
 export function showPossibleMoves(coordinates, board, piece) {
@@ -260,9 +262,17 @@ export function showPossibleMoves(coordinates, board, piece) {
                 tab.includes(y + 3) === true &&
                 board[x][y + 1].color === "void" &&
                 board[x][y + 2].color === "void" &&
-                board[x][y + 3].symbol === "R"
+                board[x][y + 3].symbol === "R"&&
+                (x===0|| x===7)
+
             ) {
-                board[x][y + 2].target = true;
+                console.log(board[x][y])
+                if(board[x][y].color=== "white" && isRockAvailableForWhite === true){
+                    
+                    board[x][y + 2].target = true
+                }else if(board[x][y].color=== "black"&& isRockAvailableForBlack === true){
+                    board[x][y + 2].target = true
+                }
             }
             if (
                 tab.includes(x) === true &&
@@ -642,6 +652,7 @@ export function showPossibleMoves(coordinates, board, piece) {
         else if (
             board[xdepart][ydepart].symbol === "KI" &&
             ycible === ydepart + 2
+            && (x=== 0|| x===7)
         ) {
             board[xcible][ycible] = board[xdepart][ydepart];
             board[xdepart][ydepart + 1] = new Rook(
@@ -650,6 +661,11 @@ export function showPossibleMoves(coordinates, board, piece) {
             board[xcible][ycible + 1] = new Empty("void");
             board[xdepart][ydepart] = new Empty("void");
             possibleTargets = [];
+            if(board[x][y].color=== "white"){
+                isRockAvailableForWhite = false
+            }else if(board[x][y].color=== "black"){
+                isRockAvailableForBlack = false
+            }
             removeAllTargets(board);
             reRender(board);
             // grand rock
@@ -665,6 +681,11 @@ export function showPossibleMoves(coordinates, board, piece) {
             board[xcible][ycible - 2] = new Empty("void");
             board[xdepart][ydepart] = new Empty("void");
             possibleTargets = [];
+            if(piece.color=== "white"){
+                isRockAvailableForWhite = false
+            }else if(piece.color=== "black"){
+                isRockAvailableForBlack = false
+            }
             removeAllTargets(board);
             reRender(board);
             // si tout est ok : deplacement

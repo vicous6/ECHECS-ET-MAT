@@ -1,6 +1,7 @@
 import { listenerPossibleMove } from "./listenerPossibleMove.js";
 
 export function reRender(fullBoard) {
+    console.log(fullBoard)
     const board = document.getElementById("board");
     while (board.lastElementChild) {
         board.removeChild(board.lastElementChild);
