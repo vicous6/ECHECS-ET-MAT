@@ -8,7 +8,7 @@ export function showPossibleMoves(coordinates, board, piece) {
     const x = parseInt(coordinates[0]);
     const y = parseInt(coordinates[1]);
     const tab = [0, 1, 2, 3, 4, 5, 6, 7];
-
+// si possibleTargets ne contient rien : je met .target true sur les cases accessibles
     if (possibleTargets.length === 0) {
         possibleTargets.push(x);
         possibleTargets.push(y);
@@ -613,6 +613,7 @@ export function showPossibleMoves(coordinates, board, piece) {
         }
 
         reRender(board);
+        // si 2 coodonées identique : deselectioner
     } else if (
         possibleTargets.length === 2 &&
         possibleTargets[0] === x &&
@@ -620,6 +621,7 @@ export function showPossibleMoves(coordinates, board, piece) {
     ) {
         possibleTargets = [];
         removeAllTargets(board);
+        
     } else {
         possibleTargets.push(x);
         possibleTargets.push(y);
@@ -650,7 +652,7 @@ export function showPossibleMoves(coordinates, board, piece) {
             possibleTargets = [];
             removeAllTargets(board);
             reRender(board);
-            //  si tout est ok
+            // grand rock
         } else if (
             board[xdepart][ydepart].symbol === "KI" &&
             ycible === ydepart - 2
@@ -665,6 +667,7 @@ export function showPossibleMoves(coordinates, board, piece) {
             possibleTargets = [];
             removeAllTargets(board);
             reRender(board);
+            // si tout est ok : deplacement
         } else {
             board[xcible][ycible] = board[xdepart][ydepart];
             board[xdepart][ydepart] = new Empty("void");
