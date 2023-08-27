@@ -670,9 +670,9 @@ export function showPossibleMoves(coordinates, board, piece) {
             // deplacement dagonales gauche
             if (
                 (tab.includes(eval(x+sign+1)) === true &&
-                tab.includes(y+1) === true && 
+                tab.includes(y-1) === true && 
                 board[eval(x+sign+1)][y-1].color !== board[x][y].color)&&
-                board[eval(x+sign+1)][y+1].color !== "void"
+                board[eval(x+sign+1)][y-1].color !== "void"
 
             ){
                 board[eval(x+sign+1)][y-1].target= true

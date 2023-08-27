@@ -11,7 +11,7 @@ export function reRender(fullBoard) {
         for (let j = 0; j < 8; j++) {
             let newTile = document.createElement("div");
             newTile.classList.add(tab[j] + (8 - i));
-            newTile.classList.add("tile");
+            // newTile.classList.add("tile");
             if (typeof fullBoard[i][j] === "object") {
                 if (fullBoard[i][j].target === true) {
                     newTile.setAttribute("id", "target");
