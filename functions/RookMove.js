@@ -1,13 +1,10 @@
 import { showPossibleMoves } from "./ShowPossibleMove.js";
 export function rookMove(rook, board) {
     rook.addEventListener("click", function () {
-        let boardHTML = document.getElementsByTagName("div");
-        // console.log(board)
-        console.log("coucou");
         function transformSquareIntoArrayNotation(piece) {
-            let tab = ["A", "B", "C", "D", "E", "F", "G", "H"];
-            let letter = piece[0];
-            let number = piece[1];
+            const tab = ["A", "B", "C", "D", "E", "F", "G", "H"];
+            const letter = piece[0];
+            const number = piece[1];
             if (number === "1") {
                 return "7" + tab.indexOf(letter);
             } else if (number === "2") {
@@ -26,8 +23,7 @@ export function rookMove(rook, board) {
                 return "0" + tab.indexOf(letter);
             }
         }
-        console.log(board);
-        // console.log(transformSquareIntoArrayNotation(bishop.className))
+
         showPossibleMoves(
             transformSquareIntoArrayNotation(rook.className),
             board,

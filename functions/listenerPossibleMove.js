@@ -6,8 +6,7 @@ import { kingMove } from "./KingMove.js";
 import { queenMove } from "./QueenMove.js";
 
 export function listenerPossibleMove(board) {
-    let pieces = document.getElementsByTagName("div");
-    console.log(board);
+    const pieces = document.getElementsByTagName("div");
     for (let i = 0; i < 64; i++) {
         if (pieces[i].innerHTML === "KN") {
             knightMove(pieces[i], board);

@@ -2,13 +2,12 @@ import { Empty } from "../models/Empty.js";
 import { Rook } from "../models/Rook.js";
 import { reRender } from "./displayHtml.js";
 import { removeAllTargets } from "./removeAllTargets.js";
+
 let possibleTargets = [];
 export function showPossibleMoves(coordinates, board, piece) {
-    // console.log(piece)
-
-    let x = parseInt(coordinates[0]);
-    let y = parseInt(coordinates[1]);
-    let tab = [0, 1, 2, 3, 4, 5, 6, 7];
+    const x = parseInt(coordinates[0]);
+    const y = parseInt(coordinates[1]);
+    const tab = [0, 1, 2, 3, 4, 5, 6, 7];
 
     if (possibleTargets.length === 0) {
         possibleTargets.push(x);
@@ -16,7 +15,6 @@ export function showPossibleMoves(coordinates, board, piece) {
         if (piece.innerHTML === "B") {
             // haut droite
 
-            //
             for (let i = 0; i < 8; i++) {
                 // diago haut gauche
 
@@ -195,7 +193,6 @@ export function showPossibleMoves(coordinates, board, piece) {
                 tab.includes(y + 1) === true &&
                 board[x][y + 1].color !== board[x][y].color
             ) {
-                console.log("ocuocu");
                 board[x][y + 1].target = true;
             }
             // haut/droite
@@ -204,7 +201,6 @@ export function showPossibleMoves(coordinates, board, piece) {
                 tab.includes(y + 1) === true &&
                 board[x - 1][y + 1].color !== board[x][y].color
             ) {
-                console.log("ocuocu");
                 board[x - 1][y + 1].target = true;
             }
             // haut
@@ -213,7 +209,6 @@ export function showPossibleMoves(coordinates, board, piece) {
                 tab.includes(y) === true &&
                 board[x - 1][y].color !== board[x][y].color
             ) {
-                console.log("ocuocu");
                 board[x - 1][y].target = true;
             }
             // haut/gauche
@@ -222,7 +217,6 @@ export function showPossibleMoves(coordinates, board, piece) {
                 tab.includes(y - 1) === true &&
                 board[x - 1][y - 1].color !== board[x][y].color
             ) {
-                console.log("ocuocu");
                 board[x - 1][y - 1].target = true;
             }
             // gauche
@@ -231,7 +225,6 @@ export function showPossibleMoves(coordinates, board, piece) {
                 tab.includes(y - 1) === true &&
                 board[x][y - 1].color !== board[x][y].color
             ) {
-                console.log("ocuocu");
                 board[x][y - 1].target = true;
             }
             // bas/gauche
@@ -240,7 +233,6 @@ export function showPossibleMoves(coordinates, board, piece) {
                 tab.includes(y - 1) === true &&
                 board[x + 1][y - 1].color !== board[x][y].color
             ) {
-                console.log("ocuocu");
                 board[x + 1][y - 1].target = true;
             }
             // bas
@@ -249,7 +241,6 @@ export function showPossibleMoves(coordinates, board, piece) {
                 tab.includes(y) === true &&
                 board[x + 1][y].color !== board[x][y].color
             ) {
-                console.log("ocuocu");
                 board[x + 1][y].target = true;
             }
             // bas/droite
@@ -258,7 +249,6 @@ export function showPossibleMoves(coordinates, board, piece) {
                 tab.includes(y + 1) === true &&
                 board[x + 1][y + 1].color !== board[x][y].color
             ) {
-                console.log("ocuocu");
                 board[x + 1][y + 1].target = true;
             }
 
@@ -272,7 +262,6 @@ export function showPossibleMoves(coordinates, board, piece) {
                 board[x][y + 2].color === "void" &&
                 board[x][y + 3].symbol === "R"
             ) {
-                console.log("oucou");
                 board[x][y + 2].target = true;
             }
             if (
@@ -286,7 +275,6 @@ export function showPossibleMoves(coordinates, board, piece) {
                 board[x][y - 3].color === "void" &&
                 board[x][y - 4].symbol === "R"
             ) {
-                console.log("oucou");
                 board[x][y - 2].target = true;
             }
             // RESTE A FAIRE LE ROCK
@@ -631,7 +619,6 @@ export function showPossibleMoves(coordinates, board, piece) {
         possibleTargets[1] === y
     ) {
         possibleTargets = [];
-        // console.log(board)
         removeAllTargets(board);
     } else {
         possibleTargets.push(x);
@@ -643,9 +630,6 @@ export function showPossibleMoves(coordinates, board, piece) {
         let xcible = possibleTargets[2];
         let ycible = possibleTargets[3];
 
-        // console.log(possibleTargets)
-        // console.log(board[0][1])
-        console.log(board[xdepart][ydepart]);
         // si le 2eme emplcement n'est pas une cible possible
         if (board[xcible][ycible].target === false) {
             possibleTargets.pop();

@@ -3,7 +3,6 @@ import { showPossibleMoves } from "./ShowPossibleMove.js";
 
 export function knightMove(knight, board) {
     knight.addEventListener("click", function () {
-        console.log(board);
         function transformSquareIntoArrayNotation(piece) {
             let tab = ["A", "B", "C", "D", "E", "F", "G", "H"];
             let letter = piece[0];
@@ -26,8 +25,7 @@ export function knightMove(knight, board) {
                 return "0" + tab.indexOf(letter);
             }
         }
-        console.log(board);
-        // console.log(transformSquareIntoArrayNotation(bishop.className))
+
         showPossibleMoves(
             transformSquareIntoArrayNotation(knight.className),
             board,
