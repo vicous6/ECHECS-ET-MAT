@@ -6,11 +6,7 @@ import { Rook } from "../models/Rook.js";
 import { Queen } from "../models/Queen.js";
 import { Empty } from "../models/Empty.js";
 
-// pour remettre les pions
-// for(let i = 0 ; i < 8 ; i++){
-//   ligne2.push(new Pawn("black"))
-//   ligne7.push(new Pawn("white"))
-// }
+
 
 export function initJsBoard() {
     let board = [];
@@ -24,11 +20,15 @@ export function initJsBoard() {
     let ligne7 = [];
     let ligne8 = [];
 
-    for (let i = 0; i < 8; i++) {
-        ligne7.push(new Empty("void"));
-        ligne2.push(new Empty("void"));
-    }
-
+    // for (let i = 0; i < 8; i++) {
+    //     ligne7.push(new Empty("void"));
+    //     ligne2.push(new Empty("void"));
+    // }
+// pour remettre les pions
+for(let i = 0 ; i < 8 ; i++){
+    ligne2.push(new Pawn("black"))
+    ligne7.push(new Pawn("white"))
+  }
     for (let i = 0; i < 8; i++) {
         ligne3.push(new Empty("void"));
 

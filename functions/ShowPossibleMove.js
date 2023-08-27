@@ -10,6 +10,7 @@ export function showPossibleMoves(coordinates, board, piece) {
     const x = parseInt(coordinates[0]);
     const y = parseInt(coordinates[1]);
     const tab = [0, 1, 2, 3, 4, 5, 6, 7];
+    console.log(board[x][y])
 // si possibleTargets ne contient rien : je met .target true sur les cases accessibles
     if (possibleTargets.length === 0) {
         possibleTargets.push(x);
@@ -287,7 +288,7 @@ export function showPossibleMoves(coordinates, board, piece) {
             ) {
                 board[x][y - 2].target = true;
             }
-            // RESTE A FAIRE LE ROCK
+           
             //
         } else if (piece.innerHTML === "Q") {
             for (let i = 0; i < 8; i++) {
@@ -620,6 +621,55 @@ export function showPossibleMoves(coordinates, board, piece) {
                     board[x - 1][y - 2].target = true;
                 }
             }
+        }else if(piece.innerHTML === "P"){
+
+            let sign = "+"
+            if(board[x][y].color=== 'white'){
+                sign="-"
+            }else if(board[x][y].color=== 'black'){
+                sign = "+"
+            }
+
+            // si deplacement normal de 1 case
+            if (
+                (tab.includes(eval(x+sign+1)) === true &&
+                tab.includes(y) === true && 
+                board[eval(x+sign+1)][y].color ==="void")
+
+            ) {
+                board[eval(x+sign+1)][y].target= true
+                // si case vide on regarde la deuxieme case
+                // si deplcaement de 1 ok et que case etait vide, check deplacement de 2
+                if(tab.includes(eval(x+sign+2)) === true &&
+
+                board[eval(x+sign+2)][y].color === "void"
+                ){
+
+                    board[eval(x+sign+2)][y].target= true
+                }
+                
+                
+            } 
+            // deplacement dagonales droite
+            if (
+                (tab.includes(eval(x+sign+1)) === true &&
+                tab.includes(y+1) === true && 
+                board[eval(x+sign+1)][y+1].color !== board[x][y].color)&&
+                board[eval(x+sign+1)][y+1].color !== "void"
+
+            ){
+                board[eval(x+sign+1)][y+1].target= true
+            }
+            // deplacement dagonales gauche
+            if (
+                (tab.includes(eval(x+sign+1)) === true &&
+                tab.includes(y+1) === true && 
+                board[eval(x+sign+1)][y-1].color !== board[x][y].color)&&
+                board[eval(x+sign+1)][y+1].color !== "void"
+
+            ){
+                board[eval(x+sign+1)][y-1].target= true
+            }
         }
 
         reRender(board);
@@ -644,8 +694,10 @@ export function showPossibleMoves(coordinates, board, piece) {
 
         // si le 2eme emplcement n'est pas une cible possible
         if (board[xcible][ycible].target === false) {
-            possibleTargets.pop();
-            possibleTargets.pop();
+            possibleTargets=[]
+            
+            removeAllTargets(board);
+
         }
 
         //  le cas du petit rock rock
@@ -668,7 +720,7 @@ export function showPossibleMoves(coordinates, board, piece) {
             }
             removeAllTargets(board);
             reRender(board);
-            // grand rock
+            // applique le deplacement grand rock
         } else if (
             board[xdepart][ydepart].symbol === "KI" &&
             ycible === ydepart - 2
