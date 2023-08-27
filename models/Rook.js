@@ -1,12 +1,11 @@
 export class Rook {
-
-  color;
+    color;
     symbol;
     target;
-    constructor(color) {
-      this.color = color;
-      this.symbol = "R";
-      this.target=false;
-    }
 
-  }
+    constructor(color) {
+        this.color = color;
+        this.symbol = "R";
+        this.target = false;
+    }
+}

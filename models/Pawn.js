@@ -1,12 +1,11 @@
 export class Pawn {
-
-  color;
+    color;
     symbol;
     target;
-    constructor(color) {
-      this.color = color;
-      this.symbol = "P";
-      this.target=false;
-    }
 
-  }
+    constructor(color) {
+        this.color = color;
+        this.symbol = "P";
+        this.target = false;
+    }
+}

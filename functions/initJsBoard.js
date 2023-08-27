@@ -6,73 +6,51 @@ import { Rook } from "../models/Rook.js";
 import { Queen } from "../models/Queen.js";
 import { Empty } from "../models/Empty.js";
 
-
-
 export function initJsBoard() {
-    let board = [];
+    const row1 = [
+        new Rook("black"),
+        new Knight("black"),
+        new Bishop("black"),
+        new Queen("black"),
+        new King("black"),
+        new Bishop("black"),
+        new Knight("black"),
+        new Rook("black"),
+    ];
+    const row8 = [
+        new Rook("white"),
+        new Knight("white"),
+        new Bishop("white"),
+        new Queen("white"),
+        new King("white"),
+        new Bishop("white"),
+        new Knight("white"),
+        new Rook("white"),
+    ];
 
-    let ligne1 = [];
-    let ligne2 = [];
-    let ligne3 = [];
-    let ligne4 = [];
-    let ligne5 = [];
-    let ligne6 = [];
-    let ligne7 = [];
-    let ligne8 = [];
+    const row2 = [];
+    const row3 = [];
+    const row4 = [];
+    const row5 = [];
+    const row6 = [];
+    const row7 = [];
 
-    // for (let i = 0; i < 8; i++) {
-    //     ligne7.push(new Empty("void"));
-    //     ligne2.push(new Empty("void"));
-    // }
-// pour remettre les pions
-for(let i = 0 ; i < 8 ; i++){
-    ligne2.push(new Pawn("black"))
-    ligne7.push(new Pawn("white"))
-  }
-    for (let i = 0; i < 8; i++) {
-        ligne3.push(new Empty("void"));
+    const board = [row1, row2, row3, row4, row5, row6, row7, row8];
 
-        ligne4.push(new Empty("void"));
+    for (let column = 0; column < 8; column++) {
+        row3.push(new Empty("void"));
+        row4.push(new Empty("void"));
+        row5.push(new Empty("void"));
+        row6.push(new Empty("void"));
 
-        ligne5.push(new Empty("void"));
-
-        ligne6.push(new Empty("void"));
-
-        if (i === 0) {
-            ligne1.push(new Rook("black"));
-            ligne8.push(new Rook("white"));
-        } else if (i === 1) {
-            ligne1.push(new Knight("black"));
-            ligne8.push(new Knight("white"));
-        } else if (i === 2) {
-            ligne1.push(new Bishop("black"));
-            ligne8.push(new Bishop("white"));
-        } else if (i === 3) {
-            ligne1.push(new Queen("black"));
-            ligne8.push(new Queen("white"));
-        } else if (i === 4) {
-            ligne1.push(new King("black"));
-            ligne8.push(new King("white"));
-        } else if (i === 5) {
-            ligne1.push(new Bishop("black"));
-            ligne8.push(new Bishop("white"));
-        } else if (i === 6) {
-            ligne1.push(new Knight("black"));
-            ligne8.push(new Knight("white"));
-        } else if (i === 7) {
-            ligne1.push(new Rook("black"));
-            ligne8.push(new Rook("white"));
-        }
+        // pour enlever les pions
+        // remettre:
+        //row2.push(new Empty("void"));
+        //row7.push(new Empty("void"));
+        // enlever:
+        row2.push(new Pawn("black"));
+        row7.push(new Pawn("white"));
     }
-
-    board.push(ligne1);
-    board.push(ligne2);
-    board.push(ligne3);
-    board.push(ligne4);
-    board.push(ligne5);
-    board.push(ligne6);
-    board.push(ligne7);
-    board.push(ligne8);
 
     return board;
 }

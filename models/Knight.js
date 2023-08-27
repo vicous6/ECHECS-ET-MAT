@@ -1,13 +1,11 @@
 export class Knight {
-
-  color;
+    color;
     symbol;
     target;
-    constructor(color) {
-      this.color = color;
-      this.symbol = "KN";
-      this.target=false;
-      
-    }
 
-  }
+    constructor(color) {
+        this.color = color;
+        this.symbol = "KN";
+        this.target = false;
+    }
+}
