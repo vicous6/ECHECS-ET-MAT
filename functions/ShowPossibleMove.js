@@ -2,16 +2,20 @@ import { Empty } from "../models/Empty.js";
 import { Rook } from "../models/Rook.js";
 import { reRender } from "./displayHtml.js";
 import { removeAllTargets } from "./removeAllTargets.js";
+import { dispplayOponentsAttacks } from "./dispplayOponentsAttacks.js";
 let isRockAvailableForBlack=true;
 let isRockAvailableForWhite=true;
 let turn = "white"
+
 let possibleTargets = [];
 export function showPossibleMoves(coordinates, board, piece) {
-    console.log(turn)
+   
+    // let isCheck = isKingInCheck(board,turn)
+    
     const x = parseInt(coordinates[0]);
     const y = parseInt(coordinates[1]);
     const tab = [0, 1, 2, 3, 4, 5, 6, 7];
-    console.log(board[x][y])
+ 
 // si possibleTargets ne contient rien : je met .target true sur les cases accessibles
     if (possibleTargets.length === 0 && board[x][y].color === turn) {
         possibleTargets.push(x);
@@ -39,6 +43,7 @@ export function showPossibleMoves(coordinates, board, piece) {
                     break;
                 } else {
                     board[x - i - 1][y - i - 1].target = true;
+                    
                 }
             }
             for (let i = 0; i < 8; i++) {
@@ -644,7 +649,7 @@ export function showPossibleMoves(coordinates, board, piece) {
                 if(tab.includes(eval(x+sign+2)) === true &&
                 board[eval(x+sign+2)][y].color === "void"
                 ){
-                    console.log(x)
+                 
                     // check si les pion sont ssur leur ligne de depart
                     if(board[x][y].color=== "white" && x ===6){
 
@@ -680,6 +685,7 @@ export function showPossibleMoves(coordinates, board, piece) {
         }
 
         reRender(board);
+        
         // si 2 coodonées identique : deselectioner
     } else if (
         possibleTargets.length === 2 &&
@@ -755,14 +761,21 @@ export function showPossibleMoves(coordinates, board, piece) {
             board[xcible][ycible] = board[xdepart][ydepart];
             board[xdepart][ydepart] = new Empty("void");
             possibleTargets = [];
-
+            
             removeAllTargets(board);
-            reRender(board);
+            
+            
             if( turn === "white"){
                 turn= "black"
             }else{
                 turn = "white"
             }
+            console.log(board)
+            
+            
+            reRender(board);
+
+            dispplayOponentsAttacks(board,turn)
         }
     }
 }

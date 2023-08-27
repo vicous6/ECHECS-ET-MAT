@@ -7,5 +7,6 @@ export class Pawn {
         this.color = color;
         this.symbol = "P";
         this.target = false;
+        this.targetEnnemy = false
     }
 }

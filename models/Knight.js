@@ -7,5 +7,6 @@ export class Knight {
         this.color = color;
         this.symbol = "KN";
         this.target = false;
+        this.targetEnnemy = false
     }
 }

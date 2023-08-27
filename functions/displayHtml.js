@@ -1,7 +1,7 @@
 import { listenerPossibleMove } from "./listenerPossibleMove.js";
 
 export function reRender(fullBoard) {
-    console.log(fullBoard)
+    // console.log(fullBoard)
     const board = document.getElementById("board");
     while (board.lastElementChild) {
         board.removeChild(board.lastElementChild);
@@ -11,8 +11,13 @@ export function reRender(fullBoard) {
         for (let j = 0; j < 8; j++) {
             let newTile = document.createElement("div");
             newTile.classList.add(tab[j] + (8 - i));
-            // newTile.classList.add("tile");
+           
             if (typeof fullBoard[i][j] === "object") {
+
+                if (fullBoard[i][j].targetEnnemy === true) {
+                    newTile.style.border= "2px solid black"
+                }
+
                 if (fullBoard[i][j].target === true) {
                     newTile.setAttribute("id", "target");
                 } else if (fullBoard[i][j].target === false) {

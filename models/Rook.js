@@ -7,5 +7,6 @@ export class Rook {
         this.color = color;
         this.symbol = "R";
         this.target = false;
+        this.targetEnnemy = false
     }
 }

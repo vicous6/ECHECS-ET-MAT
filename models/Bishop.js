@@ -7,5 +7,6 @@ export class Bishop {
         this.color = color;
         this.symbol = "B";
         this.target = false;
+        this.targetEnnemy = false
     }
 }

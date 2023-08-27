@@ -8,5 +8,6 @@ export class King {
         this.symbol = "KI";
         this.check = false;
         this.target = false;
+        this.targetEnnemy = false
     }
 }

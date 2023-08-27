@@ -7,5 +7,6 @@ export class Empty {
         this.color = color;
         this.symbol = "X";
         this.target = false;
+        this.targetEnnemy = false
     }
 }

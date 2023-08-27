@@ -7,5 +7,6 @@ export class Queen {
         this.color = color;
         this.symbol = "Q";
         this.target = false;
+        this.targetEnnemy = false
     }
 }
