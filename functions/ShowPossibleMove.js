@@ -2,16 +2,16 @@ import { Empty } from "../models/Empty.js";
 import { Rook } from "../models/Rook.js";
 import { reRender } from "./displayHtml.js";
 import { removeAllTargets } from "./removeAllTargets.js";
-let isRockAvailableForBlack=true;
-let isRockAvailableForWhite=true;
-let turn = "white"
+let isRockAvailableForBlack = true;
+let isRockAvailableForWhite = true;
+let turn = "white";
 let possibleTargets = [];
 export function showPossibleMoves(coordinates, board, piece) {
     const x = parseInt(coordinates[0]);
     const y = parseInt(coordinates[1]);
     const tab = [0, 1, 2, 3, 4, 5, 6, 7];
-    console.log(board[x][y])
-// si possibleTargets ne contient rien : je met .target true sur les cases accessibles
+    console.log(board[x][y]);
+    // si possibleTargets ne contient rien : je met .target true sur les cases accessibles
     if (possibleTargets.length === 0) {
         possibleTargets.push(x);
         possibleTargets.push(y);
@@ -263,16 +263,20 @@ export function showPossibleMoves(coordinates, board, piece) {
                 tab.includes(y + 3) === true &&
                 board[x][y + 1].color === "void" &&
                 board[x][y + 2].color === "void" &&
-                board[x][y + 3].symbol === "R"&&
-                (x===0|| x===7)
-
+                board[x][y + 3].symbol === "R" &&
+                (x === 0 || x === 7)
             ) {
-                console.log(board[x][y])
-                if(board[x][y].color=== "white" && isRockAvailableForWhite === true){
-                    
-                    board[x][y + 2].target = true
-                }else if(board[x][y].color=== "black"&& isRockAvailableForBlack === true){
-                    board[x][y + 2].target = true
+                console.log(board[x][y]);
+                if (
+                    board[x][y].color === "white" &&
+                    isRockAvailableForWhite === true
+                ) {
+                    board[x][y + 2].target = true;
+                } else if (
+                    board[x][y].color === "black" &&
+                    isRockAvailableForBlack === true
+                ) {
+                    board[x][y + 2].target = true;
                 }
             }
             if (
@@ -288,7 +292,7 @@ export function showPossibleMoves(coordinates, board, piece) {
             ) {
                 board[x][y - 2].target = true;
             }
-           
+
             //
         } else if (piece.innerHTML === "Q") {
             for (let i = 0; i < 8; i++) {
@@ -621,60 +625,53 @@ export function showPossibleMoves(coordinates, board, piece) {
                     board[x - 1][y - 2].target = true;
                 }
             }
-        }else if(piece.innerHTML === "P"){
-
-            let sign = "+"
-            if(board[x][y].color=== 'white'){
-                sign="-"
-            }else if(board[x][y].color=== 'black'){
-                sign = "+"
+        } else if (piece.innerHTML === "P") {
+            let sign = "+";
+            if (board[x][y].color === "white") {
+                sign = "-";
+            } else if (board[x][y].color === "black") {
+                sign = "+";
             }
 
             // si deplacement normal de 1 case
             if (
-                (tab.includes(eval(x+sign+1)) === true &&
-                tab.includes(y) === true && 
-                board[eval(x+sign+1)][y].color ==="void")
-
+                tab.includes(eval(x + sign + 1)) === true &&
+                tab.includes(y) === true &&
+                board[eval(x + sign + 1)][y].color === "void"
             ) {
-                board[eval(x+sign+1)][y].target= true
+                board[eval(x + sign + 1)][y].target = true;
                 // si case vide on regarde la deuxieme case
                 // si deplcaement de 1 ok et que case etait vide, check deplacement de 2
-                if(tab.includes(eval(x+sign+2)) === true &&
-                board[eval(x+sign+2)][y].color === "void"
-                ){
-                    console.log(x)
+                if (
+                    tab.includes(eval(x + sign + 2)) === true &&
+                    board[eval(x + sign + 2)][y].color === "void"
+                ) {
+                    console.log(x);
                     // check si les pion sont ssur leur ligne de depart
-                    if(board[x][y].color=== "white" && x ===6){
-
-                        board[eval(x+sign+2)][y].target= true
-                    }else if(board[x][y].color=== "black" && x ===1){
-
-                        board[eval(x+sign+2)][y].target= true
+                    if (board[x][y].color === "white" && x === 6) {
+                        board[eval(x + sign + 2)][y].target = true;
+                    } else if (board[x][y].color === "black" && x === 1) {
+                        board[eval(x + sign + 2)][y].target = true;
                     }
                 }
-                
-                
-            } 
+            }
             // deplacement dagonales droite
             if (
-                (tab.includes(eval(x+sign+1)) === true &&
-                tab.includes(y+1) === true && 
-                board[eval(x+sign+1)][y+1].color !== board[x][y].color)&&
-                board[eval(x+sign+1)][y+1].color !== "void"
-
-            ){
-                board[eval(x+sign+1)][y+1].target= true
+                tab.includes(eval(x + sign + 1)) === true &&
+                tab.includes(y + 1) === true &&
+                board[eval(x + sign + 1)][y + 1].color !== board[x][y].color &&
+                board[eval(x + sign + 1)][y + 1].color !== "void"
+            ) {
+                board[eval(x + sign + 1)][y + 1].target = true;
             }
             // deplacement dagonales gauche
             if (
-                (tab.includes(eval(x+sign+1)) === true &&
-                tab.includes(y+1) === true && 
-                board[eval(x+sign+1)][y-1].color !== board[x][y].color)&&
-                board[eval(x+sign+1)][y+1].color !== "void"
-
-            ){
-                board[eval(x+sign+1)][y-1].target= true
+                tab.includes(eval(x + sign + 1)) === true &&
+                tab.includes(y + 1) === true &&
+                board[eval(x + sign + 1)][y - 1].color !== board[x][y].color &&
+                board[eval(x + sign + 1)][y + 1].color !== "void"
+            ) {
+                board[eval(x + sign + 1)][y - 1].target = true;
             }
         }
 
@@ -687,7 +684,6 @@ export function showPossibleMoves(coordinates, board, piece) {
     ) {
         possibleTargets = [];
         removeAllTargets(board);
-        
     } else {
         possibleTargets.push(x);
         possibleTargets.push(y);
@@ -700,17 +696,16 @@ export function showPossibleMoves(coordinates, board, piece) {
 
         // si le 2eme emplcement n'est pas une cible possible
         if (board[xcible][ycible].target === false) {
-            possibleTargets=[]
-            
-            removeAllTargets(board);
+            possibleTargets = [];
 
+            removeAllTargets(board);
         }
 
         //  le cas du petit rock rock
         else if (
             board[xdepart][ydepart].symbol === "KI" &&
-            ycible === ydepart + 2
-            && (x=== 0|| x===7)
+            ycible === ydepart + 2 &&
+            (x === 0 || x === 7)
         ) {
             board[xcible][ycible] = board[xdepart][ydepart];
             board[xdepart][ydepart + 1] = new Rook(
@@ -719,10 +714,10 @@ export function showPossibleMoves(coordinates, board, piece) {
             board[xcible][ycible + 1] = new Empty("void");
             board[xdepart][ydepart] = new Empty("void");
             possibleTargets = [];
-            if(board[x][y].color=== "white"){
-                isRockAvailableForWhite = false
-            }else if(board[x][y].color=== "black"){
-                isRockAvailableForBlack = false
+            if (board[x][y].color === "white") {
+                isRockAvailableForWhite = false;
+            } else if (board[x][y].color === "black") {
+                isRockAvailableForBlack = false;
             }
             removeAllTargets(board);
             reRender(board);
@@ -739,10 +734,10 @@ export function showPossibleMoves(coordinates, board, piece) {
             board[xcible][ycible - 2] = new Empty("void");
             board[xdepart][ydepart] = new Empty("void");
             possibleTargets = [];
-            if(piece.color=== "white"){
-                isRockAvailableForWhite = false
-            }else if(piece.color=== "black"){
-                isRockAvailableForBlack = false
+            if (piece.color === "white") {
+                isRockAvailableForWhite = false;
+            } else if (piece.color === "black") {
+                isRockAvailableForBlack = false;
             }
             removeAllTargets(board);
             reRender(board);
