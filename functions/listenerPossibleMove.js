@@ -13,7 +13,6 @@ function addListener(piece, board) {
 
 export function listenerPossibleMove(board) {
     const pieces = document.getElementsByTagName("div");
-
     for (let piece in pieces) {
         // pieces[piece].innerHTML filters out HTMLcollection's methods, by returning undefined
         pieces[piece].innerHTML && addListener(pieces[piece], board);

@@ -43,13 +43,13 @@ export function initJsBoard() {
         row5.push(new Empty("void"));
         row6.push(new Empty("void"));
 
-        // pour remettre les pions
-        // enlever:
-        row2.push(new Empty("void"));
-        row7.push(new Empty("void"));
+        // pour enlever les pions
         // remettre:
-        // row2.push(new Pawn("black"));
-        // row7.push(new Pawn("white"));
+        //row2.push(new Empty("void"));
+        //row7.push(new Empty("void"));
+        // enlever:
+        row2.push(new Pawn("black"));
+        row7.push(new Pawn("white"));
     }
 
     return board;
