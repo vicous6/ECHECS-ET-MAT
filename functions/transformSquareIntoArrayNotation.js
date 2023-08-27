@@ -1,4 +1,4 @@
-export default function transformSquareIntoArrayNotation(piece) {
+export function transformSquareIntoArrayNotation(piece) {
     const tab = ["A", "B", "C", "D", "E", "F", "G", "H"];
     const letter = piece[0];
     const number = piece[1];
