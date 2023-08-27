@@ -4,7 +4,7 @@ import { reRender } from "./displayHtml.js";
 import { removeAllTargets } from "./removeAllTargets.js";
 let isRockAvailableForBlack=true;
 let isRockAvailableForWhite=true;
-
+let turn = "white"
 let possibleTargets = [];
 export function showPossibleMoves(coordinates, board, piece) {
     const x = parseInt(coordinates[0]);
@@ -641,11 +641,17 @@ export function showPossibleMoves(coordinates, board, piece) {
                 // si case vide on regarde la deuxieme case
                 // si deplcaement de 1 ok et que case etait vide, check deplacement de 2
                 if(tab.includes(eval(x+sign+2)) === true &&
-
                 board[eval(x+sign+2)][y].color === "void"
                 ){
+                    console.log(x)
+                    // check si les pion sont ssur leur ligne de depart
+                    if(board[x][y].color=== "white" && x ===6){
 
-                    board[eval(x+sign+2)][y].target= true
+                        board[eval(x+sign+2)][y].target= true
+                    }else if(board[x][y].color=== "black" && x ===1){
+
+                        board[eval(x+sign+2)][y].target= true
+                    }
                 }
                 
                 
