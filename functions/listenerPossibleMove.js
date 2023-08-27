@@ -1,10 +1,10 @@
 import { showPossibleMoves } from "./ShowPossibleMove.js";
-import { transformSquareIntoArrayNotation } from "./transformSquareIntoArrayNotation.js";
+import { alphaNumToArrayNotation } from "./alphaNumToArrayNotation.js";
 
 function addListener(piece, board) {
     piece.addEventListener("click", function () {
         showPossibleMoves(
-            transformSquareIntoArrayNotation(piece.className),
+            alphaNumToArrayNotation(piece.className),
             board,
             piece
         );

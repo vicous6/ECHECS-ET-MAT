@@ -24,6 +24,9 @@ div {
     display: grid;
     place-content: center;
     color: transparent;
+
+    user-select: none;
+    cursor: pointer;
 }
 
 div:nth-child(16n + 1),

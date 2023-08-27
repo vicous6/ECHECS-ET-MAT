@@ -5,7 +5,11 @@ export class Knight {
 
     constructor(color) {
         this.color = color;
-        this.symbol = "KN";
+        this.symbol = "N";
         this.target = false;
+        this.image =
+            this.color === "white"
+                ? `url(images/w${this.symbol}.svg)`
+                : `url(images/b${this.symbol}.svg)`;
     }
 }

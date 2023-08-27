@@ -1,100 +1,30 @@
 import { listenerPossibleMove } from "./listenerPossibleMove.js";
 
-export function reRender(fullBoard) {
-    console.log(fullBoard)
-    const board = document.getElementById("board");
-    while (board.lastElementChild) {
-        board.removeChild(board.lastElementChild);
+export function reRender(board) {
+    const htmlBoard = document.getElementById("board");
+    // delete previous board
+    while (htmlBoard.lastElementChild) {
+        htmlBoard.removeChild(htmlBoard.lastElementChild);
     }
+
+    const tiles = [];
     let tab = ["A", "B", "C", "D", "E", "F", "G", "H"];
     for (let i = 0; i < 8; i++) {
         for (let j = 0; j < 8; j++) {
             let newTile = document.createElement("div");
             newTile.classList.add(tab[j] + (8 - i));
-            // newTile.classList.add("tile");
-            if (typeof fullBoard[i][j] === "object") {
-                if (fullBoard[i][j].target === true) {
-                    newTile.setAttribute("id", "target");
-                } else if (fullBoard[i][j].target === false) {
-                }
 
-                newTile.innerHTML = fullBoard[i][j].symbol;
-                if (
-                    fullBoard[i][j].symbol === "KI" &&
-                    fullBoard[i][j].color === "white"
-                ) {
-                    newTile.style.backgroundImage = "url(images/wK.svg)";
-                    newTile.style.backgroundSize = "cover";
-                } else if (
-                    fullBoard[i][j].symbol === "KI" &&
-                    fullBoard[i][j].color === "black"
-                ) {
-                    newTile.style.backgroundImage = "url(images/bK.svg)";
-                    newTile.style.backgroundSize = "cover";
-                } else if (
-                    fullBoard[i][j].symbol === "KN" &&
-                    fullBoard[i][j].color === "white"
-                ) {
-                    newTile.style.backgroundImage = "url(images/wN.svg)";
-                    newTile.style.backgroundSize = "cover";
-                } else if (
-                    fullBoard[i][j].symbol === "KN" &&
-                    fullBoard[i][j].color === "black"
-                ) {
-                    newTile.style.backgroundImage = "url(images/bN.svg)";
-                    newTile.style.backgroundSize = "cover";
-                } else if (
-                    fullBoard[i][j].symbol === "P" &&
-                    fullBoard[i][j].color === "white"
-                ) {
-                    newTile.style.backgroundImage = "url(images/wP.svg)";
-                    newTile.style.backgroundSize = "cover";
-                } else if (
-                    fullBoard[i][j].symbol === "P" &&
-                    fullBoard[i][j].color === "black"
-                ) {
-                    newTile.style.backgroundImage = "url(images/bP.svg)";
-                    newTile.style.backgroundSize = "cover";
-                } else if (
-                    fullBoard[i][j].symbol === "R" &&
-                    fullBoard[i][j].color === "white"
-                ) {
-                    newTile.style.backgroundImage = "url(images/wR.svg)";
-                    newTile.style.backgroundSize = "cover";
-                } else if (
-                    fullBoard[i][j].symbol === "R" &&
-                    fullBoard[i][j].color === "black"
-                ) {
-                    newTile.style.backgroundImage = "url(images/bR.svg)";
-                    newTile.style.backgroundSize = "cover";
-                } else if (
-                    fullBoard[i][j].symbol === "B" &&
-                    fullBoard[i][j].color === "white"
-                ) {
-                    newTile.style.backgroundImage = "url(images/wB.svg)";
-                    newTile.style.backgroundSize = "cover";
-                } else if (
-                    fullBoard[i][j].symbol === "B" &&
-                    fullBoard[i][j].color === "black"
-                ) {
-                    newTile.style.backgroundImage = "url(images/bB.svg)";
-                    newTile.style.backgroundSize = "cover";
-                } else if (
-                    fullBoard[i][j].symbol === "Q" &&
-                    fullBoard[i][j].color === "white"
-                ) {
-                    newTile.style.backgroundImage = "url(images/wQ.svg)";
-                    newTile.style.backgroundSize = "cover";
-                } else if (
-                    fullBoard[i][j].symbol === "Q" &&
-                    fullBoard[i][j].color === "black"
-                ) {
-                    newTile.style.backgroundImage = "url(images/bQ.svg)";
-                    newTile.style.backgroundSize = "cover";
+            if (typeof board[i][j] === "object") {
+                if (board[i][j].target === true) {
+                    newTile.setAttribute("id", "target");
                 }
+                newTile.innerHTML = board[i][j].symbol;
+                newTile.style.backgroundImage = board[i][j].image;
+                newTile.style.backgroundSize = "cover";
+                tiles.push(newTile);
             }
-            board.appendChild(newTile);
         }
     }
-    listenerPossibleMove(fullBoard);
+    tiles.map((tile) => htmlBoard.appendChild(tile));
+    listenerPossibleMove(board);
 }
