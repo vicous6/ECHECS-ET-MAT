@@ -7,12 +7,13 @@ let isRockAvailableForWhite = true;
 let turn = "white";
 let possibleTargets = [];
 export function showPossibleMoves(coordinates, board, piece) {
+    console.log(turn)
     const x = parseInt(coordinates[0]);
     const y = parseInt(coordinates[1]);
     const tab = [0, 1, 2, 3, 4, 5, 6, 7];
-    console.log(board[x][y]);
+    console.log(board[x][y])
     // si possibleTargets ne contient rien : je met .target true sur les cases accessibles
-    if (possibleTargets.length === 0) {
+    if (possibleTargets.length === 0 && board[x][y].color === turn) {
         possibleTargets.push(x);
         possibleTargets.push(y);
         if (piece.innerHTML === "B") {
@@ -666,12 +667,13 @@ export function showPossibleMoves(coordinates, board, piece) {
             }
             // deplacement dagonales gauche
             if (
-                tab.includes(eval(x + sign + 1)) === true &&
-                tab.includes(y + 1) === true &&
-                board[eval(x + sign + 1)][y - 1].color !== board[x][y].color &&
-                board[eval(x + sign + 1)][y + 1].color !== "void"
-            ) {
-                board[eval(x + sign + 1)][y - 1].target = true;
+                (tab.includes(eval(x+sign+1)) === true &&
+                tab.includes(y-1) === true && 
+                board[eval(x+sign+1)][y-1].color !== board[x][y].color)&&
+                board[eval(x+sign+1)][y-1].color !== "void"
+
+            ){
+                board[eval(x+sign+1)][y-1].target= true
             }
         }
 
@@ -684,7 +686,7 @@ export function showPossibleMoves(coordinates, board, piece) {
     ) {
         possibleTargets = [];
         removeAllTargets(board);
-    } else {
+    } else if (possibleTargets.length === 2) {
         possibleTargets.push(x);
         possibleTargets.push(y);
 
@@ -714,11 +716,15 @@ export function showPossibleMoves(coordinates, board, piece) {
             board[xcible][ycible + 1] = new Empty("void");
             board[xdepart][ydepart] = new Empty("void");
             possibleTargets = [];
-            if (board[x][y].color === "white") {
-                isRockAvailableForWhite = false;
-            } else if (board[x][y].color === "black") {
-                isRockAvailableForBlack = false;
+
+            if(board[x][y].color=== "white"){
+                isRockAvailableForWhite = false
+                turn= "black"
+            }else if(board[x][y].color=== "black"){
+                isRockAvailableForBlack = false
+                turn = "white"
             }
+            
             removeAllTargets(board);
             reRender(board);
             // applique le deplacement grand rock
@@ -734,10 +740,10 @@ export function showPossibleMoves(coordinates, board, piece) {
             board[xcible][ycible - 2] = new Empty("void");
             board[xdepart][ydepart] = new Empty("void");
             possibleTargets = [];
-            if (piece.color === "white") {
-                isRockAvailableForWhite = false;
-            } else if (piece.color === "black") {
-                isRockAvailableForBlack = false;
+            if( turn === "white"){
+                turn= "black"
+            }else{
+                turn = "white"
             }
             removeAllTargets(board);
             reRender(board);
@@ -749,6 +755,11 @@ export function showPossibleMoves(coordinates, board, piece) {
 
             removeAllTargets(board);
             reRender(board);
+            if( turn === "white"){
+                turn= "black"
+            }else{
+                turn = "white"
+            }
         }
     }
 }
