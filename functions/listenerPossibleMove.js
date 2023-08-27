@@ -3,7 +3,7 @@ import { bishopMove } from "./BishopMove.js";
 import { rookMove } from "./RookMove.js";
 import { emptyMove } from "./EmptyMove.js";
 import { kingMove } from "./KingMove.js";
-import { queenMove } from "./QueenMove.js";
+import { queenMove } from "./queenMove.1.js";
 
 export function listenerPossibleMove(board) {
     const pieces = document.getElementsByTagName("div");
