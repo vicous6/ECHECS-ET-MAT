@@ -15,7 +15,7 @@ export function reRender(fullBoard) {
             if (typeof fullBoard[i][j] === "object") {
 
                 if (fullBoard[i][j].targetEnnemy === true) {
-                    newTile.style.border= "2px solid black"
+                    newTile.style.border= "4px solid black"
                 }
 
                 if (fullBoard[i][j].target === true) {

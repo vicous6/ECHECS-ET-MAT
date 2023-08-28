@@ -1,3 +1,4 @@
+import { reRender } from "./displayHtml.js";
 import { isKingInCheck } from "./isKingInCheck.js"
 import { removeAllTargets } from "./removeAllTargets.js";
 
@@ -686,5 +687,5 @@ export function dispplayOponentsAttacks(board,turn){
 
         console.log(isKingInCheck(fakeBoard,turn))
         
-      removeAllTargets(fakeBoard)
+      removeAllTargets(board)
     }

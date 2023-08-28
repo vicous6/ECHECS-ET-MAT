@@ -4,7 +4,7 @@ export function isKingInCheck(fakeBoard,turn){
         for(let j = 0 ; j < 8 ;j ++){
             // console.log(i)
             // console.log(fakeBoard[i][j])
-            if(fakeBoard[i][j].symbol === "KI" && fakeBoard[i][j].target === true ){
+            if(fakeBoard[i][j].symbol === "KI" && fakeBoard[i][j].targetEnnemy === true ){
                 
                 return "Tour des "+`${turn}`+' le roi est attaqué'
             }

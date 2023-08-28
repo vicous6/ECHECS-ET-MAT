@@ -20,6 +20,7 @@ export function showPossibleMoves(coordinates, board, piece) {
     if (possibleTargets.length === 0 && board[x][y].color === turn) {
         possibleTargets.push(x);
         possibleTargets.push(y);
+        // dispplayOponentsAttacks(board,turn)
         if (piece.innerHTML === "B") {
             // haut droite
 
@@ -200,7 +201,8 @@ export function showPossibleMoves(coordinates, board, piece) {
             if (
                 tab.includes(x) === true &&
                 tab.includes(y + 1) === true &&
-                board[x][y + 1].color !== board[x][y].color
+                board[x][y + 1].color !== board[x][y].color&&
+                board[x][y + 1].targetEnnemy === false
             ) {
                 board[x][y + 1].target = true;
             }
@@ -208,7 +210,8 @@ export function showPossibleMoves(coordinates, board, piece) {
             if (
                 tab.includes(x - 1) === true &&
                 tab.includes(y + 1) === true &&
-                board[x - 1][y + 1].color !== board[x][y].color
+                board[x - 1][y + 1].color !== board[x][y].color&&
+                board[x][y + 1].targetEnnemy === false
             ) {
                 board[x - 1][y + 1].target = true;
             }
@@ -216,7 +219,8 @@ export function showPossibleMoves(coordinates, board, piece) {
             if (
                 tab.includes(x - 1) === true &&
                 tab.includes(y) === true &&
-                board[x - 1][y].color !== board[x][y].color
+                board[x - 1][y].color !== board[x][y].color&&
+                board[x][y + 1].targetEnnemy === false
             ) {
                 board[x - 1][y].target = true;
             }
@@ -224,7 +228,8 @@ export function showPossibleMoves(coordinates, board, piece) {
             if (
                 tab.includes(x - 1) === true &&
                 tab.includes(y - 1) === true &&
-                board[x - 1][y - 1].color !== board[x][y].color
+                board[x - 1][y - 1].color !== board[x][y].color&&
+                board[x][y + 1].targetEnnemy === false
             ) {
                 board[x - 1][y - 1].target = true;
             }
@@ -232,7 +237,8 @@ export function showPossibleMoves(coordinates, board, piece) {
             if (
                 tab.includes(x) === true &&
                 tab.includes(y - 1) === true &&
-                board[x][y - 1].color !== board[x][y].color
+                board[x][y - 1].color !== board[x][y].color&&
+                board[x][y + 1].targetEnnemy === false
             ) {
                 board[x][y - 1].target = true;
             }
@@ -240,7 +246,8 @@ export function showPossibleMoves(coordinates, board, piece) {
             if (
                 tab.includes(x + 1) === true &&
                 tab.includes(y - 1) === true &&
-                board[x + 1][y - 1].color !== board[x][y].color
+                board[x + 1][y - 1].color !== board[x][y].color&&
+                board[x][y + 1].targetEnnemy === false
             ) {
                 board[x + 1][y - 1].target = true;
             }
@@ -248,7 +255,8 @@ export function showPossibleMoves(coordinates, board, piece) {
             if (
                 tab.includes(x + 1) === true &&
                 tab.includes(y) === true &&
-                board[x + 1][y].color !== board[x][y].color
+                board[x + 1][y].color !== board[x][y].color&&
+                board[x][y + 1].targetEnnemy === false
             ) {
                 board[x + 1][y].target = true;
             }
@@ -256,7 +264,8 @@ export function showPossibleMoves(coordinates, board, piece) {
             if (
                 tab.includes(x + 1) === true &&
                 tab.includes(y + 1) === true &&
-                board[x + 1][y + 1].color !== board[x][y].color
+                board[x + 1][y + 1].color !== board[x][y].color&&
+                board[x][y + 1].targetEnnemy === false
             ) {
                 board[x + 1][y + 1].target = true;
             }
@@ -775,7 +784,7 @@ export function showPossibleMoves(coordinates, board, piece) {
             
             reRender(board);
 
-            dispplayOponentsAttacks(board,turn)
+            
         }
     }
 }
